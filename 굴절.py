@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-contact = 0
+global contact
 
 def f(x):
  return 1/10*x**2
@@ -22,11 +22,8 @@ def T(a):
     return np.tan(np.pi/2+np.arctan(f_d(a))-np.arcsin(2/3*np.sin(np.arctan(f_d(a)))))
 
 def T2(a):
-  alpha = -5*T(a)+np.sqrt(25*T(a)**2+10*T(a)*a-10*f(a)+50)
-  beta = -5*T(a)-np.sqrt(25*T(a)**2+10*T(a)*a-10*f(a)+50)
-  contact = alpha if f(alpha)>f(beta) else beta
-  if(f2_d(a)>=0):
-    return np.arctan(-1/f2_d(contact))-np.arcsin(3/2*np.sin(np.arctan(-1/f2_d(a))-np.arctan(T(a))))
+  if(f2_d(contact)<0):
+    return np.tan(np.arcsin(3/2*np.sin(np.arctan(T(contact))-np.arctan(-1/f2_d(contact)))))
   else:
     return np.tan(np.arcsin(3/2*np.sin(np.arctan(T(a))-np.arctan(-1/f2_d(a))))+np.arctan(-1/f2_d(a)))
 
@@ -46,6 +43,9 @@ plt.plot(x_lens_d, y_lens_d, color='skyblue', linewidth='3')
 plt.plot(x_lens_u, y_lens_u, color='skyblue', linewidth='3')
 
 for i in np.arange(-3, 3.5, 0.5):
+  alpha = -5*T(i)+np.sqrt(25*T(i)**2+10*T(i)*i-10*f(i)+50)
+  beta = -5*T(i)-np.sqrt(25*T(i)**2+10*T(i)*i-10*f(i)+50)
+  contact = alpha if f(alpha)>=f(beta) else beta
   for j in np.arange(-2, 30, 0.001):
     ray_x.append(find_x(i, j))
     ray_y.append(j)
