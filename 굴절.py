@@ -2,41 +2,37 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def f(x):
- return 1/2*x**2
-
-def f2(x):
- return -1/2*x**2+25
+ return 1/4*x**2
 
 def f_d(x):
- return x
+ return 1/2*x
 
-def f2_d(x):
- return -x
+def T(a):
+  return np.tan(np.arctan(f_d(a))+np.arcsin((3*f_d(a))/(2*np.sqrt(f_d(a)+1))))
 
 def find_x(a, t):
  if(a!=0):
   if(t<f(a)):
    return a
   else:
-   return (t-f(a))/(np.tan(5/3*np.arctan(f_d(a))))+a
+   return 1/T(a)*(t-f(a))+a
  else:
   return 0
 
 x_lens_d, y_lens_d = list(np.arange(-5, 5.1, 0.1)), list(f(np.arange(-5, 5.1, 0.1)))
-x_lens_u, y_lens_u = list(np.arange(-5, 5.1, 0.1)), list(f2(np.arange(-5, 5.1, 0.1)))
 ray_x, ray_y = [], []
 
-
-
 plt.plot(x_lens_d, y_lens_d, color='blue', linewidth='3')
-plt.plot(x_lens_u, y_lens_u, color='blue', linewidth='3')
 
-for k in range(-5, 6):
-  for i in np.arange(-1, 15, 0.1):
+for k in np.arange(-5, 5.5, 0.5):
+  for i in np.arange(-2, 20, 0.01):
     ray_x.append(find_x(k, i))
     ray_y.append(i)
-  plt.scatter(ray_x, ray_y, color='red')
+  plt.scatter(ray_x, ray_y, color='red', s=1)
   ray_x.clear()
   ray_y.clear()
 
+plt.plot([0, 0],[-10,100], color='black')
+plt.xlim([-6, 6])
+plt.ylim([-2, 20])
 plt.show()
