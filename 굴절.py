@@ -23,9 +23,9 @@ def T(a):
 
 def T2(a):
   if(f2_d(contact)<0):
-    return np.tan(np.arcsin(3/2*np.sin(np.arctan(T(contact))-np.arctan(-1/f2_d(contact)))))
+    return np.tan(np.arctan(-1/f2_d(contact))+np.arcsin(3/2*np.sin(-np.arctan(T(a))+np.arctan(-1/f2_d(contact)))))
   else:
-    return np.tan(np.arcsin(3/2*np.sin(np.arctan(T(a))-np.arctan(-1/f2_d(a))))+np.arctan(-1/f2_d(a)))
+    return np.tan(np.arctan(-1/f2_d(contact))-np.arcsin(3/2*np.sin(np.arctan(T(a))-np.arctan(-1/f2_d(contact)))))
 
 def find_x(a, t):
   if(t<f(a)):
@@ -39,20 +39,22 @@ x_lens_d, y_lens_d = list(np.arange(-5, 5.1, 0.1)), list(f(np.arange(-5, 5.1, 0.
 x_lens_u, y_lens_u = list(np.arange(-5, 5.1, 0.1)), list(f2(np.arange(-5, 5.1, 0.1)))
 ray_x, ray_y = [], []
 
+plt.figure(figsize=(10, 10))
+plt.xlim([-5.5, 5.5])
+plt.ylim([-2, 25])
 plt.plot(x_lens_d, y_lens_d, color='skyblue', linewidth='3')
 plt.plot(x_lens_u, y_lens_u, color='skyblue', linewidth='3')
 
-for i in np.arange(-3, 3.5, 0.5):
-  alpha = -5*T(i)+np.sqrt(25*T(i)**2+10*T(i)*i-10*f(i)+50)
-  beta = -5*T(i)-np.sqrt(25*T(i)**2+10*T(i)*i-10*f(i)+50)
-  contact = alpha if f(alpha)>=f(beta) else beta
+for i in np.arange(-2, 2.5, 0.5):
+  alpha = -5*T(i)+np.sqrt(25*T(i)**2+10*T(i)*i-10*f2(i)+50)
+  beta = -5*T(i)-np.sqrt(25*T(i)**2+10*T(i)*i-10*f2(i)+50)
+  contact = alpha if f2(alpha)>=f2(beta) else beta
   for j in np.arange(-2, 30, 0.001):
     ray_x.append(find_x(i, j))
     ray_y.append(j)
-  plt.scatter(ray_x, ray_y, color='red', s=0.1)
+  plt.scatter(ray_x, ray_y, color='red', s=0.01)
   ray_x.clear()
   ray_y.clear()
+  print("%d\n",contact)
 
-plt.xlim([-5.5, 5.5])
-plt.ylim([-2, 25])
 plt.show()
