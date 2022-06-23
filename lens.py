@@ -14,15 +14,9 @@ def g_d(x):
  return -1/5*x
 
 def M1(x):
- if(f_d(x)<0):
-  return np.tan(np.pi/2-np.arctan(-f_d(x))+np.arcsin(2/3*np.sin(np.arctan(-f_d(x)))))
- else:
-  return np.tan(np.pi/2+np.arctan(f_d(x))-np.arcsin(2/3*np.sin(np.arctan(f_d(x)))))
+ return np.tan(np.pi/2-np.arctan(-f_d(x))+np.arcsin(2/3*np.sin(np.arctan(-f_d(x)))))
 def M2(x):
- if(g_d(contact)>0):
-  return np.tan(np.arctan(-1/g_d(contact))+np.arcsin(3/2*np.sin(np.arctan(-1/g_d(contact))-np.arctan(M1(x)))))
- else:
-  return np.tan(np.arctan(-1/g_d(contact))-np.arcsin(3/2*np.sin(-np.arctan(-1/g_d(contact))+np.arctan(M1(x)))))
+ return np.tan(np.arctan(-1/g_d(contact))+np.arcsin(3/2*np.sin(np.arctan(-1/g_d(contact))-np.arctan(M1(x)))))
 
 def find_x(x, y):
  if(y<=f(x) or x<-5 or x>5):
