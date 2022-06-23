@@ -35,8 +35,8 @@ plt.axis([-5.5, 5.5, -3, 20])
 plt.xticks(range(0), range(0))
 plt.yticks(range(0), range(0))
 plt.title("concave lens")
-plt.plot(lens_d[0], lens_d[1], color='skyblue', linewidth='3', zorder=1)
-plt.plot(lens_u[0], lens_u[1], color='skyblue', linewidth='3', zorder=1)
+plt.plot(lens_d[0], lens_d[1], color='skyblue', linewidth='3', zorder=0)
+plt.plot(lens_u[0], lens_u[1], color='skyblue', linewidth='3', zorder=0)
 
 for x in np.linspace(-3, 3, 50):
  alpha = 5*M1(x)+np.sqrt(25*M1(x)**2-10*M1(x)*x+10*f(x)-50)
@@ -45,7 +45,7 @@ for x in np.linspace(-3, 3, 50):
  for y in np.arange(-3, 20, 0.1):
   ray_x.append(find_x(x, y))
   ray_y.append(y)
- plt.plot(ray_x, ray_y, color='red', linewidth='0.5', zorder=0)
+ plt.plot(ray_x, ray_y, color='red', linewidth='0.5', zorder=1)
  ray_x.clear()
  ray_y.clear()
 
