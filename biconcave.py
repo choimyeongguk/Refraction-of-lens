@@ -34,7 +34,7 @@ plt.figure(figsize=(6, 6))
 plt.axis([-5.5, 5.5, -3, 20])
 plt.xticks(range(0), range(0))
 plt.yticks(range(0), range(0))
-plt.title("concave lens")
+plt.title("biconcave lens")
 plt.plot(lens_d[0], lens_d[1], color='skyblue', linewidth='3', zorder=0)
 plt.plot(lens_u[0], lens_u[1], color='skyblue', linewidth='3', zorder=0)
 
@@ -48,6 +48,5 @@ for x in np.linspace(-3, 3, 50):
  plt.plot(ray_x, ray_y, color='red', linewidth='0.5', zorder=1)
  ray_x.clear()
  ray_y.clear()
-
 
 plt.show()
