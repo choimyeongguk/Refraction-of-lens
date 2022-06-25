@@ -38,7 +38,7 @@ plt.title("convex lens")
 plt.plot(lens_d[0], lens_d[1], color='skyblue', linewidth='3', zorder=0)
 plt.plot(lens_u[0], lens_u[1], color='skyblue', linewidth='3', zorder=0)
 
-for x in np.linspace(-3, 3, 50):
+for x in np.linspace(-5.5, 5.5, 50):
  alpha = -5*M1(x)+np.sqrt(25*M1(x)**2+10*M1(x)*x-10*f(x)+50)
  beta = -5*M1(x)-np.sqrt(25*M1(x)**2+10*M1(x)*x-10*f(x)+50)
  contact = alpha if g(alpha)>g(beta) else beta
